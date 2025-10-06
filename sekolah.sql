@@ -15,7 +15,6 @@ CREATE TABLE nilai (
 );
 
 -- 2. MEMASUKKAN DATA SISWA
-
 INSERT INTO siswa (nama, umur, jurusan) VALUES
 ('Andi', 16, 'IPA'),
 ('Budi', 17, 'IPS'),
@@ -25,7 +24,6 @@ INSERT INTO siswa (nama, umur, jurusan) VALUES
 
 
 -- 3. MEMASUKKAN DATA NILAI
-
 INSERT INTO nilai (siswa_id, mata_pelajaran, nilai) VALUES
 (1, 'Matematika', 85),
 (1, 'Fisika', 90),
@@ -33,4 +31,29 @@ INSERT INTO nilai (siswa_id, mata_pelajaran, nilai) VALUES
 (3, 'Biologi', 92),
 (4, 'Sastra', 80),
 (5, 'Ekonomi', 75);
+
+-- 4. QUERY SELECT
+-- Tampilkan semua siswa
+SELECT * FROM siswa;
+
+-- Tampilkan siswa jurusan IPA
+SELECT * FROM siswa WHERE jurusan = 'IPA';
+
+-- Tampilkan rata-rata nilai tiap siswa
+SELECT s.nama, AVG(n.nilai) AS rata_nilai
+FROM siswa s
+JOIN nilai n ON s.id = n.siswa_id
+GROUP BY s.nama;
+
+
+-- 5. UPDATE DATA
+-- Ubah jurusan Budi menjadi IPA
+UPDATE siswa 
+SET jurusan = 'IPA' 
+WHERE nama = 'Budi';
+
+
+-- 6. DELETE DATA
+-- Hapus data siswa dengan id = 1
+DELETE FROM siswa WHERE id = 1;
 
